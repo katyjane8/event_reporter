@@ -1,25 +1,39 @@
 require "csv"
-require "./queue"
+require_relative "queue"
+require_relative "attendee"
 
-contents = CSV.open "full_event_attendees.csv", headers: true, header_converters: :symbol
-contents.each do |row|
-    puts row
-    puts Queue.new.count
+class EventReporter
+  attr_reader :all_attendees
+
+  def initialize
+    @all_attendees = []
   end
 
-search_criteria = {'first_name' => 'John'}
-option = {:headers => :first_row}
-
-contents do |csv|
-  matches = csv.find_all do |row|
-    match = true
-    search_critera.keys.each do |key|
-      match = match && ( row[key] == search_critera[key] )
+  def load_all_attendees(filename = './lib/full_event_attendees.csv')
+    CSV.foreach(filename, headers: true, header_converters: :symbol) do |row|
+      @all_attendees << row
+      # require "pry"; binding.pry
+      # Queue.new.count
     end
-    match
   end
-  headers = csv.headers
+  puts @all_attendees
+
 end
+
+#
+# search_criteria = {'first_name' => 'John'}
+# option = {:headers => :first_row}
+
+# contents do |csv|
+#   matches = csv.find_all do |row|
+#     match = true
+#     search_critera.keys.each do |key|
+#       match = match && ( row[key] == search_critera[key] )
+#     end
+#     match
+#   end
+#   headers = csv.headers
+# end
   # def clean_zipcode(zipcode)
   #   zipcode.to_s.rjust(5,"0")[0..4]
   # end
@@ -30,26 +44,6 @@ end
   #   email = row[:Email_Address]
   #   phone = row[:home_phone]
   #   zipcode = clean_zipcode(row[:zipcode])
-
-
-  # A. Happy Paths
-  #
-  # load full_event_attendees.csv
-  # queue count should return 0
-  # find first_name John
-  # queue count should return 63
-  # queue clear
-  # queue count should return 0
-  # help should list the commands
-  # help queue count should explain the queue count function
-  # help queue print should explain the printing function
-
-
-
-
-
-
-
 
 
 
