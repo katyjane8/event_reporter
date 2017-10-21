@@ -1,22 +1,35 @@
 require "csv"
 require "./queue"
 
-
-  lines = File.readlines "full_event_attendees.csv"
-  lines.each do |line|
-    puts line
+contents = CSV.open "full_event_attendees.csv", headers: true, header_converters: :symbol
+contents.each do |row|
+    puts row
     puts Queue.new.count
   end
+
+search_criteria = {'first_name' => 'John'}
+option = {:headers => :first_row}
+
+contents do |csv|
+  matches = csv.find_all do |row|
+    match = true
+    search_critera.keys.each do |key|
+      match = match && ( row[key] == search_critera[key] )
+    end
+    match
+  end
+  headers = csv.headers
+end
   # def clean_zipcode(zipcode)
   #   zipcode.to_s.rjust(5,"0")[0..4]
   # end
-
+  #
   # puts "EventManager Initialized!"
-  # contents = CSV.open "full_event_attendees.csv", headers: true, header_converters: :symbol
-
-  # contents.foreach(file) do |row|
-  #   puts row
-  # end
+  #
+  #   last_name = row[:last_name]
+  #   email = row[:Email_Address]
+  #   phone = row[:home_phone]
+  #   zipcode = clean_zipcode(row[:zipcode])
 
 
   # A. Happy Paths
