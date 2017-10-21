@@ -3,20 +3,32 @@ require_relative "queue"
 require_relative "attendee"
 
 class EventReporter
-  attr_reader :all_attendees
+  attr_reader :all_attendees, :queue
 
-  def initialize
+  def initialize(file_name)
     @all_attendees = []
+    @queue = Queue.new
+    load_all_attendees(file_name)
   end
 
-  def load_all_attendees(filename = './lib/full_event_attendees.csv')
-    CSV.foreach(filename, headers: true, header_converters: :symbol) do |row|
-      @all_attendees << row
-      # require "pry"; binding.pry
-      # Queue.new.count
+  def load_all_attendees(file_name)
+    CSV.foreach(file_name, headers: true, header_converters: :symbol) do |row|
+      @all_attendees << Attendee.new(row)
     end
   end
-  puts @all_attendees
+
+  def queue_count
+    @queue.count
+  end
+
+  def find_attendees(attribute, criteria)
+    @all_attendees.map do |name|
+      if criteria == name.send(attribute)
+        require "pry"; binding.pry
+        @queue << name
+      end
+    end
+  end
 
 end
 
