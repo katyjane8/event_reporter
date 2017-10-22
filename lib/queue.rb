@@ -1,4 +1,4 @@
-class Queue
+class List
 
   attr_reader :queue
 
@@ -6,8 +6,16 @@ class Queue
     @queue = []
   end
 
+  def <<(attendee)
+    @queue << attendee
+  end
+
   def count
     @queue.length
+  end
+
+  def clear
+    @queue.clear
   end
 
 end

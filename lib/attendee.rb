@@ -6,7 +6,7 @@ class Attendee
 
   def initialize(row)
     @reg_date = row[:regdate]
-    @first_name = row[:first_name]
+    @first_name = row[:first_name].capitalize
     @last_name = row[:last_name]
     @email_address = row[:email_address]
     @home_phone = row[:homephone]

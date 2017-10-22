@@ -3,11 +3,11 @@ require_relative "queue"
 require_relative "attendee"
 
 class EventReporter
-  attr_reader :all_attendees, :queue
+  attr_reader :all_attendees, :list
 
   def initialize(file_name)
     @all_attendees = []
-    @queue = Queue.new
+    @list = List.new
     load_all_attendees(file_name)
   end
 
@@ -18,16 +18,20 @@ class EventReporter
   end
 
   def queue_count
-    @queue.count
+    @list.count
   end
 
   def find_attendees(attribute, criteria)
-    @all_attendees.map do |name|
-      if criteria == name.send(attribute)
-        require "pry"; binding.pry
-        @queue << name
+    @all_attendees.each do |attendee|
+      if criteria == attendee.send(attribute)
+        @list << attendee
       end
     end
+    @list
+  end
+
+  def clear_queue
+    @list.clear
   end
 
 end
