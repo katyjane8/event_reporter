@@ -1,20 +1,29 @@
 require 'colorize'
-require 'terminal-table'
 
 class Help
 
   def initialize
-    @queue_commands = "queue export html <filename.csv>", "queue print by <attribute>", "queue count", "queue print"
-    @other_commands = "load <filename>", "find <attribute> <criteria>", "quit"
-  end
-
-  def welcome_message
-    puts "Welcome to HELP\n".light_blue
   end
 
   def list_commands
-    Terminal::Table.new :title => "Available Commands", :headings => @queue_commands, :rows => @other_commands, :style => {:width => 45, :alignment => :center, :border_x => "=", :border_i => "x"}
+    puts "\t  ________________________________________________________________
+          ================================================================
+          ||  Available Commands:                                       ||
+          ||   load <filename>, find <attribute> <criteria>,            ||
+          ||   queue count, queue clear, queue print,                   ||
+          ||   queue print by <attribute>,                              ||
+          ||   queue save to <filename.csv>,                            ||
+          ||   queue export html <filename.html>, help <command>, quit  ||
+          ================================================================
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          ".yellow
   end
+
+  # def list_commands
+  #   Terminal::Table.new :title => "Available Commands", :headings => ["load <filename>", "3", "4"],
+  #       :rows => ["load"],
+  #       :style => {:width => 80, :alignment => :center, :border_x => "=", :border_i => "x"}
+  # end
 
   def help_queue_count
     input = gets.chomp
