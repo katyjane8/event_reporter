@@ -2,21 +2,18 @@ require 'colorize'
 
 class Help
 
-  def initialize
-  end
-
   def list_commands
-    puts "\t  ________________________________________________________________
-          ================================================================
-          ||  Available Commands:                                       ||
-          ||   load <filename>, find <attribute> <criteria>,            ||
-          ||   queue count, queue clear, queue print,                   ||
-          ||   queue print by <attribute>,                              ||
-          ||   queue save to <filename.csv>,                            ||
-          ||   queue export html <filename.html>, help <command>, quit  ||
-          ================================================================
-          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          ".yellow
+    puts "\t________________________________________________________________
+            ================================================================
+            ||  Available Commands:                                       ||
+            ||   load <filename>, find <attribute> <criteria>,            ||
+            ||   queue count, queue clear, queue print,                   ||
+            ||   queue print by <attribute>,                              ||
+            ||   queue save to <filename.csv>,                            ||
+            ||   queue export html <filename.html>, help <command>, quit  ||
+            ================================================================
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ".yellow
   end
 
   # def list_commands
@@ -46,6 +43,3 @@ class Help
   end
 
 end
-
-help = Help.new
-puts help.list_commands
