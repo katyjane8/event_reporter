@@ -1,43 +1,48 @@
 require_relative 'event_reporter'
 require_relative 'help'
+require_relative 'messages'
 require 'colorize'
 
 class Runner
-  attr_reader :zero_command, :one_command, :two_command
+  include Messages
+  attr_reader :zero_command, :one_command, :two_command, :er
   def initialize
     @zero_command = ""
     @one_command = ""
     @two_command = ""
+    @er = EventReporter.new('./data/attendees_fixture.csv')
   end
 
   def start
-    welcome
-    get_input
-    if quit_commands(zero_command)
-      exit
-    else
-      start_commands(zero_command)
+    welcome_message
+    input = gets.chomp.downcase
+    case input
+    when "load" then @er.load_all_attendees('./data/attendees_fixture.csv')
+    end
+    # if quit_commands(zero_command)
+    #   exit
+    # else
+    #   start_commands(zero_command)
+    # end
+  end
+
+  def start_commands(command)
+    case command
+    # when "load" then @er.load_all_attendees
+    when "queue" then queue_commands
+    when "find" then find_commands
+    when "help" then help.list_commands
+    when "quit" then quit_commands(zero_command)
     end
   end
 
-  def welcome
-    puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold.underline
+  def queue_commands
+    event_reporter.queue_count
+    event_reporter.clear_queue
+    event_reporter.print_queue
+    event_reporter.print_sorted
   end
-
-  def get_input
-    gets.chomp.downcase
-  end
-
-  def start_commands
-  when "queue" then queue_commands
-  end
-
-  def quit_commands(command)
-    %w(q Q quit Quit QUIT).include?(command)
-    puts `clear`
-  end
-
 
 end
 run = Runner.new
-run.start
+puts run.start

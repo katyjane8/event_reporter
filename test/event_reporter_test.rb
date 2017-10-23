@@ -47,9 +47,9 @@ class EventReporterTest < Minitest::Test
 
   def test_queue_print_by_last_name
     er = EventReporter.new('./data/full_event_attendees.csv')
-    er.find_attendees(:first_name, "Mary")
+    er.find_attendees(:last_name, "Smith")
 
-    assert_equal 16, er.print_sorted.count
+    assert_equal 35, er.print_sorted(:last_name).count
   end
 
   def test_find_SLC_in_CSV

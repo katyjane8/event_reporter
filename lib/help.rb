@@ -44,10 +44,5 @@ class Help
     return "The help queue print will print."
   end
 
-  def quit
-    input = gets.chomp
-    if input == "quit" then exit
-    end
-  end
 
 end

@@ -9,5 +9,10 @@ class RunnerTest < Minitest::Test
     assert_instance_of Runner, run
   end
 
+  def test_welcome_puts_welcome_message
+    run = Runner.new
 
-end 
+  end
+
+
+end
