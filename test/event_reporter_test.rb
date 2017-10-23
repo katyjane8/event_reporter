@@ -65,7 +65,7 @@ class EventReporterTest < Minitest::Test
 
     result = er.find_attendees(:city, "Salt Lake City")
 
-    
+    assert_equal 34, er.write_list
   end
 
 end

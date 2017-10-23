@@ -45,7 +45,15 @@ class EventReporter
   end
 
   def write_list
-    
+    headers = [:first_name,:last_name,:email,:phone,:street,
+               :city,:state,:zipcode]
+    CSV.open("city_sample.csv", "wb") do |csv|
+      csv << headers
+      @list.each do |att|
+        csv << [att.first_name, att.last_name, att.email, att.phone, att.street,
+          att.city, att.state, att.zipcode]
+      end
+    end
   end
 
 end
