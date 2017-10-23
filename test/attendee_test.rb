@@ -4,9 +4,10 @@ require "./lib/attendee"
 
 class AttendeeReporterTest < Minitest::Test
   def test_attendees_file_returns_first_name
-    atte = Attendee.new(46)
+    skip
+    atten = Attendee.new(row)
 
-    assert_equal "Nate", atte.first_name
+    assert_equal "Nate", atten.first_name
   end
-  
+
 end

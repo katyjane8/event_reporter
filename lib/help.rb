@@ -22,18 +22,24 @@ class Help
   #       :style => {:width => 80, :alignment => :center, :border_x => "=", :border_i => "x"}
   # end
 
+  def get_help_count
+    gets.chomp
+  end
+
   def help_queue_count
-    input = gets.chomp
-    if gets.chomp == "help queue count"
-      puts "The help queue count will print the count of the attendees in the queue".yellow
-    end
+    puts "***You've asked for help!***".yellow
+    action = get_help_count
+    return "The help queue count will count the amount of attendees in the queue."
+  end
+
+  def get_help_print
+    gets.chomp
   end
 
   def help_queue_print
-    input = gets.chomp
-    if input == "help queue count"
-      puts "The help queue print will print."
-    end
+    puts "***You've asked for help!***".yellow
+    action = get_help_print
+    return "The help queue print will print."
   end
 
   def quit

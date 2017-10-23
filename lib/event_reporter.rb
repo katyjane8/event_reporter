@@ -34,6 +34,16 @@ class EventReporter
     @list.clear
   end
 
+  def print_queue
+    @list.each { |x| print x }
+  end
+
+  def print_sorted
+    @list.sort_by{ |l| l[:last_name] }
+    return @list
+    print_queue
+  end
+
 end
 
 #

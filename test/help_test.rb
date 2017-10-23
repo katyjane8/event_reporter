@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "minitest/pride"
+require 'minitest/spec'
 require "./lib/help"
 
 class HelpTest < Minitest::Test
@@ -11,10 +12,28 @@ class HelpTest < Minitest::Test
   end
 
   def test_help_queue_count_explains_queue_count_method
-    # help queue count should explain the queue count function
+    describe "Welcome to help count" do
+      before do
+        def get_help_count; "test string" end
+      end
+
+      it "should work" do
+        get_help_count.must_equal "The help queue count will count the amount of attendees in the queue."
+      end
+    end
   end
 
   def test_help_queue_print_explains_printing_method
-    # help queue print should explain the printing function
+    describe "Welcome to help print" do
+      before do
+        def get_help_print; "test string" end
+      end
+
+      it "should work" do
+        get_help_print.must_equal "The help queue print will print."
+      end
+    end
   end
+
+
 end

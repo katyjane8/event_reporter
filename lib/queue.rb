@@ -18,6 +18,14 @@ class List
     @queue.clear
   end
 
+  def print
+    @queue.each { |x| print x }
+  end
+
+  def sort_by
+    @queue
+  end
+
 end
 
 
