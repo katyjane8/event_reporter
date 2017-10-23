@@ -1,9 +1,11 @@
 require 'colorize'
+require_relative 'messages'
 
 class Help
+  include Messages
 
   def list_commands
-    puts "\t________________________________________________________________
+    puts "\t    ________________________________________________________________
             ================================================================
             ||  Available Commands:                                       ||
             ||   load <filename>, find <attribute> <criteria>,            ||
@@ -28,7 +30,7 @@ class Help
 
   def help_queue_count
     puts "***You've asked for help!***".yellow
-    action = get_help_count
+    get_help_count
     return "The help queue count will count the amount of attendees in the queue."
   end
 
@@ -38,7 +40,7 @@ class Help
 
   def help_queue_print
     puts "***You've asked for help!***".yellow
-    action = get_help_print
+    get_help_print
     return "The help queue print will print."
   end
 

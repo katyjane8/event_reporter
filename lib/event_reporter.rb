@@ -41,16 +41,15 @@ class EventReporter
   def print_sorted
     @list.sort_by{ |l| l[:last_name] }
     return @list
-    print_queue
   end
 
   def write_list
-    headers = [:first_name,:last_name,:email,:phone,:street,
+    headers = [:first_name,:last_name,:email_address,:home_phone,:street,
                :city,:state,:zipcode]
-    CSV.open("city_sample.csv", "wb") do |csv|
+    CSV.open("./data/city_sample.csv", "wb") do |csv|
       csv << headers
-      @list.each do |att|
-        csv << [att.first_name, att.last_name, att.email, att.phone, att.street,
+      @list.queue.each do |att|
+        csv << [att.first_name, att.last_name, att.email_address, att.home_phone, att.street,
           att.city, att.state, att.zipcode]
       end
     end

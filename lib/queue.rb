@@ -26,10 +26,6 @@ class List
     @queue
   end
 
-  def write
-    @queue.map { |k| puts k }
-  end
-
 end
 
 
