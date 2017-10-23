@@ -14,5 +14,12 @@ module Messages
         - home_phone".white
   end
 
+  def queue_commands
+    queue count
+    queue clear
+    queue print
+    queue print by
+  end
+
 
 end

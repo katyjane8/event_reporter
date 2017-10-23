@@ -3,7 +3,7 @@ require_relative 'help'
 require 'colorize'
 
 class Runner
-
+  attr_reader :zero_command, :one_command, :two_command
   def initialize
     @zero_command = ""
     @one_command = ""
@@ -25,29 +25,16 @@ class Runner
   end
 
   def get_input
-    user_input = gets.chomp.downcase
-    commands.change_commands(user_input)
-    set_commands
+    gets.chomp.downcase
   end
 
-  def start_commands(command)
-    case command
-    when "queue" then queue_commands(one_command, two_command)
-    when "help"  then help(one_command)
-    when "load"  then load_csv
-    when "find"  then find(one_command,two_command)
-    else
-      start
-    end
+  def start_commands
+  when "queue" then queue_commands
   end
 
   def quit_commands(command)
     %w(q Q quit Quit QUIT).include?(command)
     puts `clear`
-  end
-
-  def clear_screen
-   puts `clear`
   end
 
 
