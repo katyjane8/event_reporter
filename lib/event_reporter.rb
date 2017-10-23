@@ -13,7 +13,10 @@ class EventReporter
 
   def load_all_attendees(file_name)
     CSV.foreach(file_name, headers: true, header_converters: :symbol) do |row|
+      name = row[:first_name]
+      zipcode = row[:zipcode]
       @all_attendees << Attendee.new(row)
+      # puts "name: #{name} zip: #{zipcode}"
     end
   end
 
@@ -27,7 +30,9 @@ class EventReporter
         @list << attendee
       end
     end
-    @list
+    @list.queue.map do |row|
+      print "#{row.first_name}" + " " + attribute.to_s + ":" + criteria
+    end
   end
 
   def clear_queue

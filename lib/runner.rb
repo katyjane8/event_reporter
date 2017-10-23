@@ -5,19 +5,23 @@ require 'colorize'
 
 class Runner
   include Messages
-  attr_reader :zero_command, :one_command, :two_command, :er
-  def initialize
+  attr_reader :zero_command, :one_command, :two_command, :er, :file_name
+  def initialize(file_name)
     @zero_command = ""
     @one_command = ""
     @two_command = ""
-    @er = EventReporter.new('./data/attendees_fixture.csv')
+    @file_name = file_name
+    @er = EventReporter.new(file_name)
   end
 
   def start
     welcome_message
     input = gets.chomp.downcase
     case input
-    when "load" then @er.load_all_attendees('./data/attendees_fixture.csv')
+    when "load" then @er.load_all_attendees(file_name)
+    when "find" then @er.find_attendees(:zipcode, "21230")
+    when "queue" then @er.queue_count
+
     end
     # if quit_commands(zero_command)
     #   exit
@@ -29,20 +33,18 @@ class Runner
   def start_commands(command)
     case command
     # when "load" then @er.load_all_attendees
-    when "queue" then queue_commands
-    when "find" then find_commands
     when "help" then help.list_commands
     when "quit" then quit_commands(zero_command)
     end
   end
 
   def queue_commands
-    event_reporter.queue_count
-    event_reporter.clear_queue
-    event_reporter.print_queue
-    event_reporter.print_sorted
+    @er.queue_count
+    @er.clear_queue
+    @er.print_queue
+    @er.print_sorted
   end
 
 end
-run = Runner.new
+run = Runner.new('./data/attendees_fixture.csv')
 puts run.start

@@ -3,7 +3,7 @@ require_relative "cleaner"
 class Attendee
   include Cleaner
 
-  attr_accessor :first_name, :last_name, :email_address,
+  attr_reader :first_name, :last_name, :email_address,
   :home_phone, :street, :city, :state, :zipcode
   # ,RegDate,first_Name,last_Name,Email_Address,HomePhone,Street,City,State,Zipcode
 

@@ -17,7 +17,6 @@ class EventReporterTest < Minitest::Test
 
   def test_reporter_can_find_all_Johns
     er = EventReporter.new('./data/full_event_attendees.csv')
-
     result = er.find_attendees(:first_name, "John")
 
     assert_equal 63, result.count
@@ -54,7 +53,6 @@ class EventReporterTest < Minitest::Test
 
   def test_find_SLC_in_CSV
     er = EventReporter.new('./data/full_event_attendees.csv')
-
     result = er.find_attendees(:city, "Salt Lake City")
 
     assert_equal 13, result.count
