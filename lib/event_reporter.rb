@@ -44,6 +44,10 @@ class EventReporter
     print_queue
   end
 
+  def write_list
+    
+  end
+
 end
 
 #

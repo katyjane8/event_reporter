@@ -1,4 +1,7 @@
+require_relative "cleaner"
+
 class Attendee
+  include Cleaner
 
   attr_accessor :first_name, :last_name, :email_address,
   :home_phone, :street, :city, :state, :zipcode
@@ -6,17 +9,15 @@ class Attendee
 
   def initialize(row)
     @reg_date = row[:regdate]
-    @first_name = row[:first_name].capitalize
+    @first_name = Cleaner.clean_name(row[:first_name])
     @last_name = row[:last_name]
     @email_address = row[:email_address]
     @home_phone = row[:homephone]
     @street = row[:street]
-    @city = row[:city]
+    @city = Cleaner.clean_name(row[:city])
     @state = row[:state]
-    @zipcode = clean_zipcode(row[:zipcode])
+    @zipcode = Cleaner.clean_zipcode(row[:zipcode])
   end
 
-  def clean_zipcode(zipcode)
-    zipcode.to_s.rjust(5,"0")[0..4]
-  end
+
 end

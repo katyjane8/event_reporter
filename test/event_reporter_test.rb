@@ -47,11 +47,25 @@ class EventReporterTest < Minitest::Test
 
   def test_queue_print_by_last_name
     er = EventReporter.new('./lib/full_event_attendees.csv')
-
-    result = er.find_attendees(:first_name, "Mary")
+    er.find_attendees(:first_name, "Mary")
 
     assert_equal 16, er.print_sorted.count
   end
 
+  def test_find_SLC_in_CSV
+    er = EventReporter.new('./lib/full_event_attendees.csv')
+
+    result = er.find_attendees(:city, "Salt Lake City")
+
+    assert_equal 13, result.count
+  end
+
+  def test_CSV_can_be_written_with_queue
+    er = EventReporter.new('./lib/full_event_attendees.csv')
+
+    result = er.find_attendees(:city, "Salt Lake City")
+
+    
+  end
 
 end
