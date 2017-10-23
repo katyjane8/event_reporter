@@ -32,10 +32,10 @@ class Runner
 
   def start_commands(command)
     case command
-    when "queue" then queue_commands(second_command, third_command)
-    when "help"  then help(second_command)
+    when "queue" then queue_commands(one_command, two_command)
+    when "help"  then help(one_command)
     when "load"  then load_csv
-    when "find"  then find(second_command,third_command)
+    when "find"  then find(one_command,two_command)
     else
       start
     end
