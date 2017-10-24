@@ -1,5 +1,4 @@
 require_relative 'event_reporter'
-require_relative 'help'
 require_relative 'messages'
 require 'colorize'
 

@@ -3,25 +3,21 @@ require_relative "queue"
 require_relative "attendee"
 
 class EventReporter
-  attr_reader :all_attendees, :list
+  attr_reader :all_attendees, :queue, :list
 
   def initialize(file_name)
     @all_attendees = []
-    @list = List.new
+    @list = []
     load_all_attendees(file_name)
   end
 
   def load_all_attendees(file_name)
     CSV.foreach(file_name, headers: true, header_converters: :symbol) do |row|
-      name = row[:first_name]
-      zipcode = row[:zipcode]
+      # name = row[:first_name]
+      # zipcode = row[:zipcode]
       @all_attendees << Attendee.new(row)
       # puts "name: #{name} zip: #{zipcode}"
     end
-  end
-
-  def queue_count
-    @list.count
   end
 
   def find_attendees(attribute, criteria)
@@ -29,22 +25,10 @@ class EventReporter
       if criteria == attendee.send(attribute)
         @list << attendee
       end
+      # .map do |row|
+      # print "#{row.first_name}" + " " + attribute.to_s + ":" + criteria
     end
-    @list.queue.map do |row|
-      print "#{row.first_name}" + " " + attribute.to_s + ":" + criteria
-    end
-  end
-
-  def clear_queue
-    @list.clear
-  end
-
-  def print_queue
-    @list.each { |x| print x }
-  end
-
-  def print_sorted(attribute)
-    @list.sort_by
+    @list
   end
 
   def write_list
@@ -52,7 +36,7 @@ class EventReporter
                :city,:state,:zipcode]
     CSV.open("./data/city_sample.csv", "wb") do |csv|
       csv << headers
-      @list.queue.each do |att|
+      @list.each do |att|
         csv << [att.first_name, att.last_name, att.email_address, att.home_phone, att.street,
           att.city, att.state, att.zipcode]
       end

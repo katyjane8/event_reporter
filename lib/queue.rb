@@ -1,21 +1,32 @@
-class List
+require_relative "attendee"
+require_relative "event_reporter"
 
+class List
   attr_reader :queue
 
   def initialize
     @queue = []
   end
 
-  def <<(attendee)
-    @queue << attendee
-  end
-
-  def count
+  def queue_count
     @queue.length
   end
 
-  def clear
+  def clear_queue
     @queue.clear
+  end
+
+  def print_queue
+    @queue.each { |x| print x }
+  end
+
+  def print_sorted(attribute)
+    find_attendees(attribute, criteria)
+    @list.sort_by
+  end
+
+  def <<(attendee)
+    @queue << attendee
   end
 
   def print
@@ -27,7 +38,6 @@ class List
   end
 
 end
-
 
 # @uploaded_csvs = {'dates' => [], 'last_names' => [], 'first_names' => ['bob', 'john', 'john']}
 #

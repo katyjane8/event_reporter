@@ -9,12 +9,6 @@ class EventReporterTest < Minitest::Test
     assert_equal 5175, er.all_attendees.count
   end
 
-  def test_queue_count_in_event
-    er = EventReporter.new('./data/full_event_attendees.csv')
-
-    assert_equal 0, er.queue_count
-  end
-
   def test_reporter_can_find_all_Johns
     er = EventReporter.new('./data/full_event_attendees.csv')
     result = er.find_attendees(:first_name, "John")
@@ -24,12 +18,13 @@ class EventReporterTest < Minitest::Test
 
   def test_queue_can_be_cleared
     er = EventReporter.new('./data/full_event_attendees.csv')
+    list = List.new
 
     er.find_attendees(:first_name, "Rachel")
-    refute er.list.queue.empty?
+    refute er.list.empty?
 
-    er.clear_queue
-    assert_equal 0, er.queue_count
+    list.clear_queue
+    assert_equal 0, list.queue_count
   end
 
   def test_reporter_can_find_all_Marys_and_queue_them
@@ -38,7 +33,7 @@ class EventReporterTest < Minitest::Test
     result = er.find_attendees(:first_name, "Mary")
 
     assert_equal 16, result.count
-    refute er.list.queue.empty?
+    refute er.list.empty?
   end
 
   # def test_it_can_print_all_Marys
@@ -46,9 +41,10 @@ class EventReporterTest < Minitest::Test
 
   def test_queue_print_by_last_name
     er = EventReporter.new('./data/full_event_attendees.csv')
+    list = List.new
     er.find_attendees(:last_name, "Smith")
 
-    assert_equal 35, er.print_sorted(:last_name).count
+    assert_equal 35, list.print_sorted(:last_name).count
   end
 
   def test_find_SLC_in_CSV
