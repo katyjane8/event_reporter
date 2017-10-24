@@ -10,14 +10,13 @@ class Printer
   end
 
   def printing_header
-    format = '%-4s %-4s %-4s %-4s %-4s %-4s %-24s %s'
+    format = '%-12s %-12s %-12s %-10s %-10s %-10s %-12s %s'
     puts format % @table_header
   end
 
   def printing_queue
-    format = '%-4s %-4s %-4s %-4s %-4s %-4s %-24s %s'
-    # require "pry"; binding.pry
-      if @queue.count == 0
+    format = '%-12s %-12s %-12s %-10s %-10s %-10s %-12s %s'
+      if @queue.queue.length == 0
         puts "Please enter criteria in queue"
       else
         @er.print_sorted(:zipcode).each do |attendee|
@@ -27,8 +26,6 @@ class Printer
       end
   end
   # Print the data table sorted by the specified attribute like zipcode.
-
-
 end
 
 pri = Printer.new

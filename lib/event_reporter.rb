@@ -31,6 +31,16 @@ class EventReporter
     @list
   end
 
+  def sort_queue(attribute)
+    @list.sort_by do |att|
+      att.send(attribute)
+    end
+  end
+
+  def print_sorted
+    sort_queue
+  end
+
   def write_list
     headers = [:first_name,:last_name,:email_address,:home_phone,:street,
                :city,:state,:zipcode]

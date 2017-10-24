@@ -8,7 +8,7 @@ class PrinterTest < Minitest::Test
   # def test_help_will_list_commands_available
   #   printer = Printer.new
   #
-  #   # assert_output(/queue print/) {help.list_commands}
+  #   assert_output(/queue print/) {help.list_commands}
   # end
 
   def test_help_queue_count_explains_queue_count_method

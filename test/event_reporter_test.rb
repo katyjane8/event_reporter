@@ -36,6 +36,14 @@ class EventReporterTest < Minitest::Test
     refute er.list.empty?
   end
 
+  def test_queue_can_be_sorted
+    er = EventReporter.new('./data/attendees_fixture.csv')
+    er.find_attendees(:first_name, "Sarah")
+    result = er.sort_queue(:state)
+
+    assert_equal "20009", result.first.zipcode
+  end
+
   # def test_it_can_print_all_Marys
   # end
 

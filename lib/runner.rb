@@ -15,6 +15,7 @@ class Runner
 
   def start
     welcome_message
+    # require "pry"; binding.pry
     input = gets.chomp.downcase
     case input
     when "load" then @er.load_all_attendees(file_name)
