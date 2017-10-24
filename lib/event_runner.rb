@@ -1,4 +1,4 @@
-require_relative 'runner'
+require_relative 'command_base'
 
-run = Runner.new('./data/attendees_fixture.csv')
-puts run.welcome
+comm = Commander.new('./data/attendees_fixture.csv')
+puts comm.welcome

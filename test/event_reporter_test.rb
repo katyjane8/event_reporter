@@ -6,7 +6,7 @@ class EventReporterTest < Minitest::Test
   def test_CSV_loads_all_attendees
     er = EventReporter.new('./data/full_event_attendees.csv')
 
-    assert_equal "Mary", er.all_attendees
+    assert_equal 5175, er.all_attendees.count
   end
 
   def test_reporter_can_find_all_Johns

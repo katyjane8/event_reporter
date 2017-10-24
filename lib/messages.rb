@@ -15,12 +15,12 @@ module Messages
   end
 
   def welcome_message
-    puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold.underline
+    puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold
   end
 
   def quit_commands(command)
     %w(q Q quit Quit QUIT).include?(command)
-    exit
+    puts `clear`
   end
 
   def list_commands
