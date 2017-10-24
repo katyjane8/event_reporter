@@ -37,8 +37,8 @@ class EventReporter
     end
   end
 
-  def print_sorted
-    sort_queue
+  def print_sorted(attribute)
+    sort_queue(attribute)
   end
 
   def write_list
@@ -47,8 +47,8 @@ class EventReporter
     CSV.open("./data/city_sample.csv", "wb") do |csv|
       csv << headers
       @list.each do |att|
-        csv << [att.first_name, att.last_name, att.email_address, att.home_phone, att.street,
-          att.city, att.state, att.zipcode]
+        csv << [att.first_name, att.last_name, att.email_address,
+          att.home_phone, att.street, att.city, att.state, att.zipcode]
       end
     end
   end

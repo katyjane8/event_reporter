@@ -19,5 +19,4 @@ class Attendee
     @zipcode = Cleaner.clean_zipcode(row[:zipcode])
   end
 
-
 end
