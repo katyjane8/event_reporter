@@ -20,6 +20,7 @@ class List
     @queue.each { |x| print x }
   end
 
+  #this is NOT WORKINGGG
   def print_sorted(attribute)
     find_attendees(attribute, criteria)
     @list.sort_by
