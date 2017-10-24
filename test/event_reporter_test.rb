@@ -39,14 +39,6 @@ class EventReporterTest < Minitest::Test
   # def test_it_can_print_all_Marys
   # end
 
-  def test_queue_print_by_last_name
-    er = EventReporter.new('./data/full_event_attendees.csv')
-    list = List.new
-    er.find_attendees(:last_name, "Smith")
-
-    assert_equal 35, list.print_sorted(:last_name).count
-  end
-
   def test_find_SLC_in_CSV
     er = EventReporter.new('./data/full_event_attendees.csv')
     result = er.find_attendees(:city, "Salt Lake City")

@@ -22,8 +22,7 @@ class List
 
   #this is NOT WORKINGGG
   def print_sorted(attribute)
-    find_attendees(attribute, criteria)
-    @list.sort_by
+    @queue.sort_by
   end
 
   def <<(attendee)
