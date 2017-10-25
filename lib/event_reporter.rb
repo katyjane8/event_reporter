@@ -5,19 +5,21 @@ require_relative "attendee"
 class EventReporter
   attr_reader :all_attendees, :queue, :list
 
-  def initialize(file_name)
+  def initialize(file_name = './data/full_event_attendees.csv')
+    @file_name = file_name
     @all_attendees = []
     @list = []
-    load_all_attendees(file_name)
+    load_all_attendees
   end
 
-  def load_all_attendees(file_name)
-    CSV.foreach(file_name, headers: true, header_converters: :symbol) do |row|
-      # name = row[:first_name]
+  def load_all_attendees
+    CSV.foreach(@file_name, headers: true, header_converters: :symbol) do |row|
+      name = row[:first_name]
       # zipcode = row[:zipcode]
       @all_attendees << Attendee.new(row)
       # puts "name: #{name} zip: #{zipcode}"
     end
+    "load was successful"
   end
 
   def find_attendees(attribute, criteria)
@@ -54,5 +56,3 @@ class EventReporter
   end
 
 end
-er = EventReporter.new('./data/attendees_fixture.csv')
-puts er.load_all_attendees('./data/attendees_fixture.csv')

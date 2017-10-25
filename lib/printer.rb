@@ -27,9 +27,3 @@ class Printer
   end
   # Print the data table sorted by the specified attribute like zipcode.
 end
-
-# pri = Printer.new
-# er = EventReporter.new('./data/attendees_fixture.csv')
-# puts er.find_attendees(:city, "Salt Lake City")
-# puts pri.printing_header
-# puts pri.printing_queue

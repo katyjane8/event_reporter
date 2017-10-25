@@ -6,67 +6,47 @@ require 'colorize'
 
 class Commander
   include Messages
-  attr_reader :file_name, :input, :first_string, :second_string, :third_string
-  def initialize(file_name)
-    @file_name = file_name
-    @er = EventReporter.new(file_name)
+  def initialize
+    # @er = EventReporter.new
     @list = List.new
     @print = Printer.new
-    # @first_string = nil
-    # @second_string = nil
-    # @third_string = nil
   end
 
   def welcome
     welcome_message
-    input = gets.chomp
-    if quit_commands(input)
+    input = gets.chomp.split(" ")
+    if input[0] == "quit"
       exit
     else
       start_commands(input)
     end
   end
-  #
-  # def gets_input
-  #   user_input = gets.chomp.downcase
-  #   # set_input
-  # end
-
-  # def first_string
-  #   @first_string = input
-  # end
-
-  # def second_string
-  #   @second_string =
-  # end
-  #
-  # def third_string
-  #   @third_string = input.third_string if input.third_string != nil
-  # end
-  #
-  # def set_input
-  #   first_string
-  #   second_string
-  #   third_string
-  # end
 
   def start_commands(input)
-    case input
-    when "load" then load_csv
-    when "find" then @er.find_attendees(:zipcode, "21230")
+    # require "pry"; binding.pry
+    case input[0]
+    when "load" then load_csv(input[1])
+    when "find" then find_people(input[1], input[2])
     when "queue" then queue_commands
-    when quit_commands(input) then exit
+    when "quit" then exit
     end
   end
 
-  def load_csv
-    puts "Please enter filename"
-    filename = gets.chomp.downcase
-    if filename == "city_sample"
-      er = EventReporter.new("./data/city_sample.csv")
-      puts er.all_attendees("./data/city_sample.csv")
+  def load_csv(filename)
+    @er = EventReporter.new("./data/#{filename}")
+    if filename != "full_event_attendees.csv"
+      puts @er.load_all_attendees
     else
-      puts @er.all_attendees("./data/full_event_attendees.csv")
+      puts @er.load_all_attendees
+    end
+  end
+
+  def find_people(input[1], input[2])
+    @er = EventReporter.new
+    @er.find_attendees(input[1], input[2])
+    input[1] = 
+    if response == "zipcode #{attribute}"
+      puts @er.find_attendees(:zipcode)
     end
   end
 
@@ -79,7 +59,46 @@ class Commander
     # when "save to" then ""(two_command)
     # when "export html" then ""(two_command)
     end
-    start_commands
   end
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# def gets_input
+#   user_input = gets.chomp.downcase
+#   # set_input
+# end
+
+# def first_string
+#   @first_string = input
+# end
+
+# def second_string
+#   @second_string =
+# end
+#
+# def third_string
+#   @third_string = input.third_string if input.third_string != nil
+# end
+#
+# def set_input
+#   first_string
+#   second_string
+#   third_string
+# end
