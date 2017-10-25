@@ -28,6 +28,7 @@ class Commander
     when "load" then load_csv(input[1])
     when "find" then find_people(input[1], input[2])
     when "queue" then queue_commands(input[1], input[2], input[3])
+    when "help" then help_commands(input[1])
     when "quit" then exit
     end
   end
@@ -57,11 +58,15 @@ class Commander
        puts @print.printing_queue
      elsif output == "print" && action == "by" && "#{attribute}"
        puts @print.printing_queue
-     else output == "save" && action == "to" && "#{attribute}"
+     elsif output == "save" && action == "to" && "./data/#{attribute}"
        puts @er.write_list
+     else output == "export" && action == "html" && "./data/#{attribute}"
+       puts @er.write_html
      end
-    # when "save to" then ""(two_command)
-    # when "export html" then ""(two_command)
+
+     def help_commands
+       
+     end
   end
 
 end
