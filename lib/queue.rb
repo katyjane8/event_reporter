@@ -1,7 +1,7 @@
 require_relative "attendee"
 
 class List
-  attr_reader :queue
+  attr_accessor :queue
 
   def initialize
     @queue = []
@@ -13,14 +13,6 @@ class List
 
   def clear_queue
     @queue.clear
-  end
-
-  def print_queue
-    @queue.each { |x| print x }
-  end
-
-  def print
-    @queue.each { |x| print x }
   end
 
 end
