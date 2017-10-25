@@ -42,24 +42,18 @@ module Messages
   #       :style => {:width => 80, :alignment => :center, :border_x => "=", :border_i => "x"}
   # end
 
-  def get_help_count
-    gets.chomp
-  end
+
 
   def help_queue_count
-    puts "***You've asked for help!***".yellow
-    get_help_count
-    return "The help queue count will count the amount of attendees in the queue."
-  end
-
-  def get_help_print
-    gets.chomp
+    puts "The help queue count will count the amount of attendees in the queue.".yellow
   end
 
   def help_queue_print
-    puts "***You've asked for help!***".yellow
-    get_help_print
-    return "The help queue print will print."
+    puts "The help queue print will print.".light_green
+  end
+
+  def help_queue_clear
+    puts "The help".blue
   end
 
 end

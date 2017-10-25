@@ -23,13 +23,24 @@ class Commander
   end
 
   def start_commands(input)
-    # require "pry"; binding.pry
     case input[0]
     when "load" then load_csv(input[1])
     when "find" then find_people(input[1], input[2])
     when "queue" then queue_commands(input[1], input[2], input[3])
-    when "help" then help_commands(input[1])
+    when "help" then helper_commands(input[1], input[2], input[3])
     when "quit" then exit
+    end
+  end
+
+  def helper_commands(command, filename=nil, attribute=nil)
+    if command != nil && command == "queue" && filename == "count"
+      help_queue_count
+    elsif command != nil && command == "queue" && filename == "clear"
+      help_queue_clear
+    elsif command != nil && command == "queue" && filename == "print"
+      help_queue_print
+    else
+      list_commands
     end
   end
 
@@ -64,25 +75,9 @@ class Commander
        puts @er.write_html
      end
 
-     def help_commands
-       
-     end
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

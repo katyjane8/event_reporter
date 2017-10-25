@@ -14,10 +14,7 @@ class EventReporter
 
   def load_all_attendees
     CSV.foreach(@file_name, headers: true, header_converters: :symbol) do |row|
-      name = row[:first_name]
-      # zipcode = row[:zipcode]
       @all_attendees << Attendee.new(row)
-      # puts "name: #{name} zip: #{zipcode}"
     end
     "load was successful"
   end
