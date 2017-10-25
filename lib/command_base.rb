@@ -27,13 +27,13 @@ class Commander
     case input[0]
     when "load" then load_csv(input[1])
     when "find" then find_people(input[1], input[2])
-    when "queue" then queue_commands
+    when "queue" then queue_commands(input[1], input[2], input[3])
     when "quit" then exit
     end
   end
 
   def load_csv(filename)
-    @er = EventReporter.new("./data/#{filename}")
+    @er = EventReporter.new("./data/#{filename}.csv")
     if filename != "full_event_attendees.csv"
       puts @er.load_all_attendees
     else
@@ -41,24 +41,27 @@ class Commander
     end
   end
 
-  def find_people(input[1], input[2])
+  def find_people(criteria, attribute)
     @er = EventReporter.new
-    @er.find_attendees(input[1], input[2])
-    input[1] = 
-    if response == "zipcode #{attribute}"
-      puts @er.find_attendees(:zipcode)
-    end
+    puts @er.find_attendees(criteria, attribute)
   end
 
-  def queue_commands(second_string, third_string)
-    case second_string
-    when "clear" then @list.clear_queue
-    when "count" then @list.queue_count
-    when "print" then @print.printing_header
-    when "print by" then @print.printing_queue(two_command)
+  def queue_commands(output, action, attribute)
+    @list = List.new
+    @er = EventReporter.new
+     if output == "clear"
+       puts @list.clear_queue
+     elsif output == "count"
+       puts @list.queue.count
+     elsif output == "print"
+       puts @print.printing_queue
+     elsif output == "print" && action == "by" && "#{attribute}"
+       puts @print.printing_queue
+     else output == "save" && action == "to" && "#{attribute}"
+       puts @er.write_list
+     end
     # when "save to" then ""(two_command)
     # when "export html" then ""(two_command)
-    end
   end
 
 end
