@@ -81,9 +81,9 @@ class Commander
      elsif output == "clear"
        puts @er.list.clear
      elsif output == "print"
-       puts @print.printing_header
-     elsif output == "print" && action == "by"
-       puts @print.printing_queue
+       puts @er.printing_header
+     elsif output == "print by" && "#{action}"
+       puts @er.printing_queue
      elsif output == "save" && action == "to"
        puts @er.write_list(input)
      else output == "export" && action == "html"
