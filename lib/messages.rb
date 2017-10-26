@@ -49,7 +49,7 @@ module Messages
   end
 
   def help_queue_save
-    puts "Queue save will save a new CSV file with criteria specified.".pink
+    puts "Queue save will save a new CSV file with criteria specified.".light_magenta
   end
 
   def help_queue_export

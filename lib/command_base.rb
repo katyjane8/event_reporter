@@ -46,6 +46,14 @@ class Commander
       help_queue_print
     elsif command != nil && command == "queue" && filename == "print by"
       help_queue_print_by
+    elsif command != nil && command == "queue" && filename == "save"
+      help_queue_save
+    elsif command != nil && command == "queue" && filename == "export"
+      help_queue_export
+    elsif command != nil && command == "load" && filename == "file"
+      help_load_file
+    elsif command != nil && command == "find"
+      help_find
     else
       list_commands
     end
