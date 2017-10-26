@@ -12,6 +12,7 @@ class EventReporter
     @list = []
     load_all_attendees
     @table_header = ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
+    @formatting = '%-12s %-10s %-30s %-7s %-26s %-6s %-30s %s'
   end
 
   def load_all_attendees
@@ -31,30 +32,31 @@ class EventReporter
   end
 
   def sort_queue(attribute)
-    @list.sort_by do |att|
+    sorted_queue = @list.sort_by do |att|
       att.send(attribute)
     end
+    print_sorted(sorted_queue)
   end
 
-  def print_sorted(attribute)
-    sort_queue(attribute)
+  def print_sorted(sorted_queue)
+    sorted_queue.each_with_index do |person, i|
+      puts @formatting % [person.last_name, person.first_name, person.email_address,
+        person.zipcode, person.city, person.state, person.street,
+        person.home_phone]
+      end
   end
 
   def printing_header
-    format = '%-12s %-10s %-30s %-7s %-26s %-6s %-30s %s'
-    format @table_header.to_s
-    @table_header
+    @formatting % @table_header
   end
 
   def printing_queue
-    printing_header
-    format = '%-12s %-10s %-30s %-7s %-26s %-6s %-30s %s'
       if @list.length == 0
         "Please enter criteria in queue"
       else
-        printed = @list.each_with_index do |person, index|
-          pause(index)
-          puts format % [person.last_name, person.first_name, person.email_address,
+        @list.each_with_index do |person, index|
+          # pause(index)
+          print @formatting % [person.last_name, person.first_name, person.email_address,
             person.zipcode, person.city, person.state, person.street,
             person.home_phone]
         end
