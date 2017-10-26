@@ -32,18 +32,13 @@ class EventReporter
   end
 
   def sort_queue(attribute)
-    sorted_queue = @list.sort_by do |att|
+    @list.sort_by do |att|
       att.send(attribute)
     end
-    print_sorted(sorted_queue)
   end
 
-  def print_sorted(sorted_queue)
-    sorted_queue.each_with_index do |person, i|
-      puts @formatting % [person.last_name, person.first_name, person.email_address,
-        person.zipcode, person.city, person.state, person.street,
-        person.home_phone]
-      end
+  def print_sorted(attribute)
+    sort_queue(attribute)
   end
 
   def printing_header
