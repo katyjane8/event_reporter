@@ -1,37 +1,26 @@
-require "minitest/autorun"
-require "minitest/pride"
-require "minitest/spec"
-require "./lib/printer"
+require_relative 'test_helper'
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'minitest/spec'
+require_relative '../lib/printer'
 
 class PrinterTest < Minitest::Test
+  def test_printer_exists
+    printer = Printer.new
 
-  # def test_help_will_list_commands_available
-  #   printer = Printer.new
-  #
-  #   assert_output(/queue print/) {help.list_commands}
-  # end
-
-  def test_help_queue_count_explains_queue_count_method
-    describe "Welcome to help count" do
-      before do
-        def get_help_count; "test string" end
-      end
-
-      it "should work" do
-        get_help_count.must_equal "The help queue count will count the amount of attendees in the queue."
-      end
-    end
+    assert_instance_of Printer, printer
   end
 
-  def test_help_queue_print_explains_printing_method
-    describe "Welcome to help print" do
-      before do
-        def get_help_print; "test string" end
-      end
+  def test_printing_header_prints_header
+    printer = Printer.new
+    result = ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
 
-      it "should work" do
-        get_help_print.must_equal "The help queue print will print."
-      end
-    end
+    assert_equal result, printer.printing_header
+  end
+
+  def test_format_queue_prints_help_statement_with_empty_queue
+    printer = Printer.new
+
+    assert_equal "Please enter criteria in queue", printer.printing_queue
   end
 end

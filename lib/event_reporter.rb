@@ -1,32 +1,30 @@
-require "csv"
-require_relative "queue"
-require_relative "attendee"
+require_relative 'queue'
+require_relative 'attendee'
+require 'csv'
+require 'erb'
 
 class EventReporter
   attr_reader :all_attendees, :queue, :list
 
-  def initialize(file_name)
+  def initialize(file_name = './data/full_event_attendees.csv')
+    @file_name = file_name
     @all_attendees = []
     @list = []
-    load_all_attendees(file_name)
+    load_all_attendees
   end
 
-  def load_all_attendees(file_name)
-    CSV.foreach(file_name, headers: true, header_converters: :symbol) do |row|
-      # name = row[:first_name]
-      # zipcode = row[:zipcode]
+  def load_all_attendees
+    CSV.foreach(@file_name, headers: true, header_converters: :symbol) do |row|
       @all_attendees << Attendee.new(row)
-      # puts "name: #{name} zip: #{zipcode}"
     end
+    "load was successful"
   end
 
   def find_attendees(attribute, criteria)
     @all_attendees.each do |attendee|
-      if criteria == attendee.send(attribute)
+      if criteria.downcase == attendee.send(attribute).downcase
         @list << attendee
       end
-      # .map do |row|
-      # print "#{row.first_name}" + " " + attribute.to_s + ":" + criteria
     end
     @list
   end
@@ -37,22 +35,33 @@ class EventReporter
     end
   end
 
-  def print_sorted
-    sort_queue
+  def print_sorted(attribute)
+   sort_queue(attribute)
   end
 
-  def write_list
+  def write_list(input)
     headers = [:first_name,:last_name,:email_address,:home_phone,:street,
                :city,:state,:zipcode]
-    CSV.open("./data/city_sample.csv", "wb") do |csv|
+    CSV.open("./data/#{input}", "wb") do |csv|
       csv << headers
       @list.each do |att|
-        csv << [att.first_name, att.last_name, att.email_address, att.home_phone, att.street,
-          att.city, att.state, att.zipcode]
+        csv << [att.first_name, att.last_name, att.email_address,
+          att.home_phone, att.street, att.city, att.state, att.zipcode]
       end
     end
   end
 
+  def write_list_html(filename)
+    template_file = File.read "template.erb"
+    erb_file = ERB.new template_file
+    form_file = erb_file.result(binding)
+
+    Dir.mkdir("html") unless Dir.exists? "html"
+    file = "html/#{filename}"
+
+    File.open(file, "w") do |path|
+      path.puts form_file
+    end
+  end
+
 end
-er = EventReporter.new('./data/attendees_fixture.csv')
-puts er.load_all_attendees('./data/attendees_fixture.csv')

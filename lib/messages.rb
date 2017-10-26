@@ -1,6 +1,9 @@
 require 'colorize'
 
 module Messages
+  def welcome_message
+    puts "Welcome! Type 'help' for a list of commands, 'help criteria' for search options, or enter a different command to begin.".cyan.bold
+  end
 
   def criteria_help
     puts "The criteria you can search for are:
@@ -11,17 +14,7 @@ module Messages
       - street
       - city
       - state
-      - home_phone".white
-  end
-
-  def welcome_message
-    puts "hello"
-    # puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold.underline
-  end
-
-  def quit_commands(command)
-    %w(q Q quit Quit QUIT).include?(command)
-    puts `clear`
+      - home_phone".cyan
   end
 
   def list_commands
@@ -38,30 +31,36 @@ module Messages
             ".yellow
   end
 
-  # def list_commands
-  #   Terminal::Table.new :title => "Available Commands", :headings => ["load <filename>", "3", "4"],
-  #       :rows => ["load"],
-  #       :style => {:width => 80, :alignment => :center, :border_x => "=", :border_i => "x"}
-  # end
-
-  def get_help_count
-    gets.chomp
-  end
-
   def help_queue_count
-    puts "***You've asked for help!***".yellow
-    get_help_count
-    return "The help queue count will count the amount of attendees in the queue."
-  end
-
-  def get_help_print
-    gets.chomp
+    puts "Queue count will count the amount of attendees in the queue.".yellow
   end
 
   def help_queue_print
-    puts "***You've asked for help!***".yellow
-    get_help_print
-    return "The help queue print will print."
+    puts "Queue print will print the queue.".light_green
+  end
+
+  def help_queue_clear
+    puts "Queue clear will clear your queue.".blue
+  end
+
+  def help_queue_print_by
+    puts "Queue print by will print with specific attributes.".green
+  end
+
+  def help_queue_save
+    puts "Queue save will save a new CSV file with criteria specified.".light_magenta
+  end
+
+  def help_queue_export
+    puts "Queue export will save your CSV into a formatted HTML file.".red
+  end
+
+  def help_load_file
+    puts "Load your file here into first and last name, email and phone number.".yellow
+  end
+
+  def help_find
+    puts "Find what you want to see by entering criteria and attribute.".magenta
   end
 
 end
