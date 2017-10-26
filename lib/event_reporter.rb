@@ -22,11 +22,9 @@ class EventReporter
 
   def find_attendees(attribute, criteria)
     @all_attendees.each do |attendee|
-      if criteria == attendee.send(attribute)
+      if criteria.downcase == attendee.send(attribute).downcase
         @list << attendee
       end
-      # .map do |row|
-      # print "#{row.first_name}" + " " + attribute.to_s + ":" + criteria
     end
     @list
   end

@@ -16,4 +16,8 @@ class Attendee
     @state = Cleaner.clean_state(row[:state])
     @zipcode = Cleaner.clean_zipcode(row[:zipcode])
   end
+
+  def to_s
+    "#{@first_name}, #{@last_name}, #{@email_address}, #{@home_phone}"
+  end
 end

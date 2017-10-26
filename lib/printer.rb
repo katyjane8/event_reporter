@@ -11,17 +11,22 @@ class Printer
 
   def printing_header
     format = '%-12s %-12s %-12s %-10s %-10s %-10s %-12s %s'
-    puts format % @table_header
+    format @table_header.to_s
+    @table_header
   end
 
   def printing_queue
+    format_queue
+  end
+
+  def format_queue
     format = '%-12s %-12s %-12s %-10s %-10s %-10s %-12s %s'
       if @queue.queue.length == 0
-        puts "Please enter criteria in queue"
+        "Please enter criteria in queue"
       else
         @er.print_sorted(:zipcode).each do |attendee|
           zip = attendee.zipcode
-          puts format % [zip]
+          format % [zip]
         end
       end
   end

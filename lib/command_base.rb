@@ -14,12 +14,17 @@ class Commander
 
   def welcome
     welcome_message
+    start
+  end
+
+  def start
     input = gets.chomp.split(" ")
     if input[0] == "quit"
       exit
     else
       start_commands(input)
     end
+    start
   end
 
   def start_commands(input)
@@ -39,6 +44,8 @@ class Commander
       help_queue_clear
     elsif command != nil && command == "queue" && filename == "print"
       help_queue_print
+    elsif command != nil && command == "queue" && filename == "print by"
+      help_queue_print_by
     else
       list_commands
     end

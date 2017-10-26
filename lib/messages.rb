@@ -11,7 +11,7 @@ module Messages
       - street
       - city
       - state
-      - home_phone".white
+      - home_phone".cyan
   end
 
   def welcome_message
@@ -33,15 +33,35 @@ module Messages
   end
 
   def help_queue_count
-    puts "The help queue count will count the amount of attendees in the queue.".yellow
+    puts "Queue count will count the amount of attendees in the queue.".yellow
   end
 
   def help_queue_print
-    puts "The help queue print will print.".light_green
+    puts "Queue print will print the queue.".light_green
   end
 
   def help_queue_clear
-    puts "The help queue clear will clear your queue.".blue
+    puts "Queue clear will clear your queue.".blue
+  end
+
+  def help_queue_print_by
+    puts "Queue print by will print with specific attributes.".green
+  end
+
+  def help_queue_save
+    puts "Queue save will save a new CSV file with criteria specified.".pink
+  end
+
+  def help_queue_export
+    puts "Queue export will save your CSV into a formatted HTML file.".red
+  end
+
+  def help_load_file
+    puts "Load your file here into first and last name, email and phone number.".yellow
+  end
+
+  def help_find
+    puts "Find what you want to see by entering criteria and attribute.".magenta
   end
 
 end
