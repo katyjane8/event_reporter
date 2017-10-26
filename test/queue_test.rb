@@ -1,6 +1,6 @@
-require "minitest/autorun"
-require "minitest/pride"
-require "./lib/queue"
+require 'minitest/autorun'
+require 'minitest/pride'
+require_relative '../lib/queue'
 
 class ListTest < Minitest::Test
   def test_queue_count_in_event_at_default

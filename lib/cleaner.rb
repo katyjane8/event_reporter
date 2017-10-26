@@ -1,5 +1,4 @@
 module Cleaner
-
   # self only extends the methods you tell it to in a module.
   # http://lizabinante.com/blog/modules-and-self-in-ruby/
   def self.clean_zipcode(zipcode)

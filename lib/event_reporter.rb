@@ -1,7 +1,7 @@
-require "csv"
-require "erb"
-require_relative "queue"
-require_relative "attendee"
+require_relative 'queue'
+require_relative 'attendee'
+require 'csv'
+require 'erb'
 
 class EventReporter
   attr_reader :all_attendees, :queue, :list

@@ -1,4 +1,4 @@
-require_relative "attendee"
+require_relative 'attendee'
 
 class List
   attr_accessor :queue

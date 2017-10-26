@@ -1,6 +1,6 @@
-require "minitest/autorun"
-require "minitest/pride"
-require "./lib/event_reporter"
+require 'minitest/autorun'
+require 'minitest/pride'
+require_relative '../lib/event_reporter'
 
 class EventReporterTest < Minitest::Test
   def test_CSV_loads_all_attendees
@@ -37,6 +37,7 @@ class EventReporterTest < Minitest::Test
     result = er.sort_queue(:state)
 
     assert_equal "20009", result.first.zipcode
+    assert_equal "33703", result.last.zipcode
   end
 
   def test_it_can_print_all_Nolans

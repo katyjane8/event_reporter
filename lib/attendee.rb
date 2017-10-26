@@ -1,4 +1,4 @@
-require_relative "cleaner"
+require_relative 'cleaner'
 
 class Attendee
   include Cleaner
