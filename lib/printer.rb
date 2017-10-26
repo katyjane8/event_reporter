@@ -30,5 +30,4 @@ class Printer
         end
       end
   end
-  # Print the data table sorted by the specified attribute like zipcode.
 end

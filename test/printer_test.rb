@@ -18,17 +18,9 @@ class PrinterTest < Minitest::Test
     assert_equal result, printer.printing_header
   end
 
-  def test_format_queue_prints_help_statement
+  def test_format_queue_prints_help_statement_with_empty_queue
     printer = Printer.new
 
     assert_equal "Please enter criteria in queue", printer.printing_queue
-  end
-
-  def test_printing_queue_prints_the_queue
-    printer = Printer.new
-    er = EventReporter.new
-    er.find_attendees(:last_name, "Smith")
-
-    assert_equal "", printer.printing_queue
   end
 end

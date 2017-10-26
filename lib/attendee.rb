@@ -18,6 +18,6 @@ class Attendee
   end
 
   def to_s
-    "#{@first_name}, #{@last_name}, #{@email_address}, #{@home_phone}"
+    "#{@first_name}, #{@last_name}, #{@email_address}, #{@home_phone}, #{@state}, #{@zipcode}"
   end
 end

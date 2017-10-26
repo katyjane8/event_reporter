@@ -36,7 +36,7 @@ class EventReporter
   end
 
   def print_sorted(attribute)
-    sort_queue(attribute)
+   sort_queue(attribute)
   end
 
   def write_list(input)

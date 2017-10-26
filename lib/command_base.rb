@@ -7,7 +7,7 @@ require 'colorize'
 class Commander
   include Messages
   def initialize
-    # @er = EventReporter.new
+    @er = EventReporter.new
     @list = List.new
     @print = Printer.new
   end
@@ -65,34 +65,29 @@ class Commander
     @er = EventReporter.new
     if filename.nil?
       puts @er.load_all_attendees
-    elsif filename != "full_event_attendees.csv"
+    else filename != "full_event_attendees.csv"
       @er = EventReporter.new("./data/#{filename}")
-      puts @er.load_all_attendees
-    else
       puts @er.load_all_attendees
     end
   end
 
-  def find_people(criteria, attribute)
-    @er = EventReporter.new
-    puts @er.find_attendees(criteria, attribute)
+  def find_people(attribute, criteria)
+    puts @er.find_attendees(attribute, criteria)
   end
 
-  def queue_commands(output, action, attribute)
-    @list = List.new
-    @er = EventReporter.new
-     if output == "clear"
-       puts @list.clear_queue
-     elsif output == "count"
+  def queue_commands(output, action, input)
+     if output == "count"
        puts @er.list.count
+     elsif output == "clear"
+       puts @er.list.clear
      elsif output == "print"
        puts @print.printing_header
-     elsif output == "print" && action == "by" && "#{attribute}"
+     elsif output == "print" && action == "by"
        puts @print.printing_queue
-     elsif output == "save" && action == "to" && "./data/#{attribute}"
-       puts @er.write_list(attribute)
-     else output == "export" && action == "html" && "./data/#{attribute}"
-       puts @er.write_list_html(attribute)
+     elsif output == "save" && action == "to"
+       puts @er.write_list(input)
+     else output == "export" && action == "html"
+       puts @er.write_list_html(input)
      end
   end
 
