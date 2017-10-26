@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'minitest/spec'
+require_relative 'test_helper'
 require_relative '../lib/printer'
 
 class PrinterTest < Minitest::Test

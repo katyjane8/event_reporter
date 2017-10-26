@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require_relative 'test_helper'
 require_relative '../lib/attendee'
 
 class AttendeeReporterTest < Minitest::Test
