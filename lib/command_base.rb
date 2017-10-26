@@ -54,6 +54,8 @@ class Commander
       help_load_file
     elsif command != nil && command == "find"
       help_find
+    elsif command != nil && command == "criteria"
+      criteria_help
     else
       list_commands
     end
@@ -61,7 +63,7 @@ class Commander
 
   def load_csv(filename)
     @er = EventReporter.new
-    if filename == nil
+    if filename.nil?
       puts @er.load_all_attendees
     elsif filename != "full_event_attendees.csv"
       @er = EventReporter.new("./data/#{filename}")
@@ -82,9 +84,9 @@ class Commander
      if output == "clear"
        puts @list.clear_queue
      elsif output == "count"
-       puts @list.queue.count
+       puts @er.list.count
      elsif output == "print"
-       puts @print.printing_queue
+       puts @print.printing_header
      elsif output == "print" && action == "by" && "#{attribute}"
        puts @print.printing_queue
      elsif output == "save" && action == "to" && "./data/#{attribute}"

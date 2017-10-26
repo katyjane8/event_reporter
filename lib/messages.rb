@@ -1,6 +1,9 @@
 require 'colorize'
 
 module Messages
+  def welcome_message
+    puts "Welcome! Type 'help' for a list of commands, 'help criteria' for search options, or enter a different command to begin.".cyan.bold
+  end
 
   def criteria_help
     puts "The criteria you can search for are:
@@ -12,10 +15,6 @@ module Messages
       - city
       - state
       - home_phone".cyan
-  end
-
-  def welcome_message
-    puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold
   end
 
   def list_commands
