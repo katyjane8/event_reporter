@@ -26,14 +26,13 @@ class EventReporterTest < Minitest::Test
 
   def test_queue_can_be_populated
     er = EventReporter.new('./data/full_event_attendees.csv')
-    list = List.new
     er.find_attendees(:first_name, "Rachel")
 
     assert_equal 52, er.list.count
-
+  end
 
   def test_queue_can_be_sorted_and_first_in_sort_has_20009_zipcode
-    er = EventReporter.new('./data/attendees_fixture.csv')
+    er = EventReporter.new('./data/att_fixture.csv')
     er.find_attendees(:first_name, "Sarah")
     result = er.sort_queue(:state)
 
@@ -67,9 +66,9 @@ class EventReporterTest < Minitest::Test
 
   def test_CSV_can_be_written_with_queue
     er = EventReporter.new('./data/full_event_attendees.csv')
-    result = er.find_attendees(:zipcode, "90210")
+    er.find_attendees(:zipcode, "90210")
 
-    assert_equal 1, er.write_list.count
+    assert_equal 1, er.write_list("/test.csv").count
   end
 
 end

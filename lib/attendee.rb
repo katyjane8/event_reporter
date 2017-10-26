@@ -10,10 +10,10 @@ class Attendee
     @first_name = Cleaner.clean_name(row[:first_name])
     @last_name = Cleaner.clean_name(row[:last_name])
     @email_address = row[:email_address]
-    @home_phone = row[:homephone]
-    @street = row[:street]
+    @home_phone = Cleaner.clean_phone(row[:homephone])
+    @street = Cleaner.clean_name(row[:street])
     @city = Cleaner.clean_name(row[:city])
-    @state = Cleaner.clean_name(row[:state])
+    @state = Cleaner.clean_state(row[:state])
     @zipcode = Cleaner.clean_zipcode(row[:zipcode])
   end
 end

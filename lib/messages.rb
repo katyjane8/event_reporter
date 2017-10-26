@@ -17,10 +17,6 @@ module Messages
   def welcome_message
     puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold
   end
-#
-  # def quit_commands(command)
-  #   %w(q Q quit Quit QUIT).include?(command)
-  # end
 
   def list_commands
     puts "\t    ________________________________________________________________
@@ -36,14 +32,6 @@ module Messages
             ".yellow
   end
 
-  # def list_commands
-  #   Terminal::Table.new :title => "Available Commands", :headings => ["load <filename>", "3", "4"],
-  #       :rows => ["load"],
-  #       :style => {:width => 80, :alignment => :center, :border_x => "=", :border_i => "x"}
-  # end
-
-
-
   def help_queue_count
     puts "The help queue count will count the amount of attendees in the queue.".yellow
   end
@@ -53,7 +41,7 @@ module Messages
   end
 
   def help_queue_clear
-    puts "The help".blue
+    puts "The help queue clear will clear your queue.".blue
   end
 
 end

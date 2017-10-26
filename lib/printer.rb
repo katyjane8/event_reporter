@@ -4,7 +4,7 @@ require 'colorize'
 
 class Printer
   def initialize
-    @er = EventReporter.new('./data/attendees_fixture.csv')
+    @er = EventReporter.new('./data/att_fixture.csv')
     @table_header = ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
     @queue = List.new
   end
