@@ -77,7 +77,7 @@ class EventReporterTest < Minitest::Test
     er = EventReporter.new('./data/full_event_attendees.csv')
     er.find_attendees(:first_name, "katy")
 
-    assert_equal "", er.printing_queue
+    assert_equal "Katy", er.printing_queue.last.first_name
   end
 
 end

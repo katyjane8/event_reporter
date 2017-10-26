@@ -12,7 +12,6 @@ class EventReporter
     @list = []
     load_all_attendees
     @table_header = ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
-    @queue = []
   end
 
   def load_all_attendees
@@ -42,24 +41,22 @@ class EventReporter
   end
 
   def printing_header
-    format = '%-12s %-12s %-12s %-10s %-10s %-10s %-12s %s'
+    format = '%-12s %-10s %-30s %-7s %-26s %-6s %-30s %s'
     format @table_header.to_s
     @table_header
   end
 
   def printing_queue
-    format_queue
-  end
-
-  def format_queue
-    format = '%-12s %-12s %-12s %-10s %-10s %-10s %-12s %s'
-      if @queue.length == 0
+    printing_header
+    format = '%-12s %-10s %-30s %-7s %-26s %-6s %-30s %s'
+      if @list.length == 0
         "Please enter criteria in queue"
       else
-        print_sorted(input).each do |attender|
-          printed = attender.input
-          require "pry"; binding.pry
-          format % [printed]
+        printed = @list.each_with_index do |person, index|
+          pause(index)
+          puts format % [person.last_name, person.first_name, person.email_address,
+            person.zipcode, person.city, person.state, person.street,
+            person.home_phone]
         end
       end
   end
