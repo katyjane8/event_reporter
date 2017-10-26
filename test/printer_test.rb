@@ -23,4 +23,10 @@ class PrinterTest < Minitest::Test
 
     assert_equal "Please enter criteria in queue", printer.printing_queue
   end
+
+  # def test_printer
+  #   printer = Printer.new
+  #
+  #   assert_equal "", printer.format_queue
+  # end
 end

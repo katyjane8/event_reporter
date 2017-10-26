@@ -73,4 +73,11 @@ class EventReporterTest < Minitest::Test
     assert_equal 1, er.write_list("/test.csv").count
   end
 
+  def test_printing_queue
+    er = EventReporter.new('./data/full_event_attendees.csv')
+    er.find_attendees(:first_name, "katy")
+
+    assert_equal "", er.printing_queue
+  end
+
 end
