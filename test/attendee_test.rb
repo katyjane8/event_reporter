@@ -11,4 +11,19 @@ class AttendeeReporterTest < Minitest::Test
     assert_equal "05401", zipcode
   end
 
+  def test_it_cleans_up_phone_numbers_with_periods_and_hyphens
+    attendee = Attendee.new(:phone_number => "202.444-9382")
+    assert_equal "2024449382", attendee.phone_number
+  end
+
+  def test_it_cleans_up_phone_numbers_with_periods_and_hyphens
+    attendee = Attendee.new(:phone_number => "202.444-9382")
+    assert_equal "2024449382", attendee.phone_number
+  end
+
+  def test_it_cleans_up_phone_numbers_with_periods_and_hyphens
+    attendee = Attendee.new(:phone_number => "202.444-9382")
+    assert_equal "2024449382", attendee.phone_number
+  end
+
 end

@@ -30,7 +30,7 @@ class EventReporterTest < Minitest::Test
     er.find_attendees(:first_name, "Rachel")
 
     assert_equal 52, er.list.count
-  end
+
 
   def test_queue_can_be_sorted_and_first_in_sort_has_20009_zipcode
     er = EventReporter.new('./data/attendees_fixture.csv')

@@ -1,4 +1,5 @@
 require "csv"
+require "erb"
 require_relative "queue"
 require_relative "attendee"
 
@@ -40,15 +41,28 @@ class EventReporter
     sort_queue(attribute)
   end
 
-  def write_list
+  def write_list(input)
     headers = [:first_name,:last_name,:email_address,:home_phone,:street,
                :city,:state,:zipcode]
-    CSV.open("./data/city_sample.csv", "wb") do |csv|
+    CSV.open("./data/#{input}", "wb") do |csv|
       csv << headers
       @list.each do |att|
         csv << [att.first_name, att.last_name, att.email_address,
           att.home_phone, att.street, att.city, att.state, att.zipcode]
       end
+    end
+  end
+
+  def write_list_html(filename)
+    template_file = File.read "template.erb"
+    erb_file = ERB.new template_file
+    form_file = erb_file.result(binding)
+
+    Dir.mkdir("html") unless Dir.exists? "html"
+    file = "html/#{filename}"
+
+    File.open(file, "w") do |path|
+      path.puts form_file
     end
   end
 

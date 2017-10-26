@@ -45,8 +45,11 @@ class Commander
   end
 
   def load_csv(filename)
-    @er = EventReporter.new("./data/#{filename}.csv")
-    if filename != "full_event_attendees.csv"
+    @er = EventReporter.new
+    if filename == nil
+      puts @er.load_all_attendees
+    elsif filename != "full_event_attendees.csv"
+      @er = EventReporter.new("./data/#{filename}")
       puts @er.load_all_attendees
     else
       puts @er.load_all_attendees
@@ -70,38 +73,10 @@ class Commander
      elsif output == "print" && action == "by" && "#{attribute}"
        puts @print.printing_queue
      elsif output == "save" && action == "to" && "./data/#{attribute}"
-       puts @er.write_list
+       puts @er.write_list(attribute)
      else output == "export" && action == "html" && "./data/#{attribute}"
-       puts @er.write_html
+       puts @er.write_list_html(attribute)
      end
-
   end
 
 end
-
-
-
-
-#
-# def gets_input
-#   user_input = gets.chomp.downcase
-#   # set_input
-# end
-
-# def first_string
-#   @first_string = input
-# end
-
-# def second_string
-#   @second_string =
-# end
-#
-# def third_string
-#   @third_string = input.third_string if input.third_string != nil
-# end
-#
-# def set_input
-#   first_string
-#   second_string
-#   third_string
-# end
